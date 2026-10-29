@@ -23,6 +23,7 @@ HAS_INJECTOR_SURROGATE_DEPS = (
     HAS_SURROGATE_RUNTIME_DEPS and HAS_CHEETAH_DEPS and has_module("lcls_cu_inj_model")
 )
 HAS_SURROGATE_DEPS = HAS_INJECTOR_SURROGATE_DEPS
+HAS_TWOBUNCH_SURROGATE_DEPS = has_module("twobunch_cnf") and has_module("beamphysics")
 
 HAS_STAGED_MODEL_DEPS = (
     HAS_BMAD_DEPS

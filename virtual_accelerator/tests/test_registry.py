@@ -49,6 +49,7 @@ class TestDiscovery:
             "impact_f2e_inj",
             "surrogate_f2e_inj",
             "bmad_f2_elec",
+            "surrogate_f2e_twobunch",
         ]
         assert set(list_models(facility="lcls")) | set(
             list_models(facility="facet2")
@@ -158,6 +159,10 @@ class TestValidation:
         # OTR4 is past impact_cu_inj's stop at z=16.5, so it cannot hand off there.
         with pytest.raises(ValueError, match="not a shared handoff point"):
             get_model(["impact_cu_inj", "bmad_cu_hxr"], handoff_loc="OTR4")
+
+    def test_rejects_staging_twobunch_surrogate_into_bmad(self):
+        with pytest.raises(ValueError, match="not a shared handoff point"):
+            get_model(["surrogate_f2e_twobunch", "bmad_f2_elec"])
 
 
 class TestSingleModelKwargs:

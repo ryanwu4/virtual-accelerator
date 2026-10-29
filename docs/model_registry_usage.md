@@ -50,6 +50,7 @@ Print all registered models as a table:
 | impact_f2e_inj           | Facet2   | IMPACT         | CATHODEF | PR10241 | FACET-II injector                                   |
 | surrogate_f2e_inj        | Facet2   | Surrogate      | CATHODEF | PR10241 | FACET-II injector (NN surrogate)                    |
 | bmad_f2_elec             | Facet2   | Bmad           | CATHODEF | END     | FACET-II e- linac                                   |
+| surrogate_f2e_twobunch   | Facet2   | Surrogate      | CATHODEF | XTCAVF  | FACET-II two-bunch beam (NN surrogate)              |
 +--------------------------+----------+----------------+----------+---------+-----------------------------------------------------+
 | high_fidelity_cu_hxr_s2e | LCLS     | IMPACT+Bmad    | CATHODE  | END     | impact_cu_inj -> bmad_cu_hxr (handoff YAG03)        |
 | fast_cu_hxr_s2e          | LCLS     | Surrogate+Bmad | CATHODE  | END     | surrogate_cu_inj -> bmad_cu_hxr (handoff OTR2)      |
@@ -67,7 +68,7 @@ Filter by facility or simulator:
 
 ```python
 >>> list(list_models(facility="facet2"))
-['impact_f2e_inj', 'surrogate_f2e_inj', 'bmad_f2_elec']
+['impact_f2e_inj', 'surrogate_f2e_inj', 'bmad_f2_elec', 'surrogate_f2e_twobunch']
 
 >>> list(list_models(simulator="bmad"))
 ['bmad_cu_hxr', 'bmad_f2_elec']
@@ -125,6 +126,17 @@ specific screen.
 
 >>> get_model("impact_cu_inj", end_ele="YAG03")         # doctest: +SKIP
 <impact.model.distgen.distgen_impact_model.LUMEDistgenImpactModel object at 0x1666b6450>
+
+```
+
+`surrogate_f2e_twobunch` gives the FACET-II drive and witness bunches at the XTCAVF
+entrance, as `final_particles` and the `XTCAVF_beam` output. XTCAVF is not a handoff
+point of `bmad_f2_elec`, so the model is used on its own:
+
+```python
+>>> m = get_model("surrogate_f2e_twobunch", n_particles=2000)   # doctest: +SKIP
+>>> m.set({"L2PhaseSet": -35.0, "seed": 1})                     # doctest: +SKIP
+>>> beam = m.final_particles                                    # doctest: +SKIP
 
 ```
 

@@ -301,6 +301,34 @@ def get_facet_injector_surrogate_model(
     )
 
 
+def get_facet_twobunch_surrogate_model(
+    n_particles: int = 10000, seed: int = 0, latent: str = "sample"
+):
+    """
+    Get the surrogate for the FACET-II two-bunch beam from the cathode to XTCAVF.
+
+    Parameters
+    ----------
+    n_particles: int, optional
+        Number of macroparticles injected per draw. Default is 10000.
+    seed: int, optional
+        Initial sampling seed. Default is 0.
+    latent: str, optional
+        Beam latent mode, "sample" or "mean". Default is "sample".
+
+    Returns
+    -------
+    TwoBunchSurrogate
+        Surrogate whose output beam is defined at the XTCAVF entrance.
+    """
+    from twobunch_cnf import load_model
+    from virtual_accelerator.surrogates.twobunch_surrogate import TwoBunchSurrogate
+
+    return TwoBunchSurrogate(
+        load_model("c_b3_ema"), n_particles=n_particles, seed=seed, latent=latent
+    )
+
+
 def get_facet_staged_model(n_particles=10000, surrogate_inputs="machine", **kwargs):
     """
     Get the StagedModel for the FACET-II lattice from PR10241 to END, with an injector surrogate model.

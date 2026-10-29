@@ -59,6 +59,7 @@ surrogate = [
     "lume-cheetah",
     "distgen",
     "facet2-inj-ml-model @ git+https://github.com/slaclab/facet2_inj_ml_model",
+    "facet2-twobunch-cnf[beam] @ git+https://github.com/ryanwu4/facet2-twobunch-cnf@v0.1.0",
     "lcls-cu-inj-model @ git+https://github.com/slaclab/lcls_cu_injector_ml_model.git",
 ]
 all = [
@@ -70,6 +71,7 @@ all = [
     "lume-pva",
     "distgen",
     "facet2-inj-ml-model @ git+https://github.com/slaclab/facet2_inj_ml_model",
+    "facet2-twobunch-cnf[beam] @ git+https://github.com/ryanwu4/facet2-twobunch-cnf@v0.1.0",
     "lcls-cu-inj-model @ git+https://github.com/slaclab/lcls_cu_injector_ml_model.git",
     "zfel @ git+https://github.com/slaclab/zfel.git",
 ]

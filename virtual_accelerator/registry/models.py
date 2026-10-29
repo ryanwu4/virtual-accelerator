@@ -237,4 +237,19 @@ MODELS: dict[str, ModelEntry] = {
         default_start="CATHODEF",
         default_end="END",
     ),
+    "surrogate_f2e_twobunch": ModelEntry(
+        name="surrogate_f2e_twobunch",
+        description="FACET-II two-bunch beam (NN surrogate)",
+        facility="facet2",
+        simulator="surrogate",
+        builder="virtual_accelerator.models.facet2:get_facet_twobunch_surrogate_model",
+        extras=("surrogate",),
+        params={"n_particles": 10000, "seed": 0, "latent": "sample"},
+        # Not a handoff of bmad_f2_elec: XTCAVF is an lcavity in facet2-lattice,
+        # so a downstream Bmad stage could not streak the beam.
+        handoff_points=("XTCAVF",),
+        default_start="CATHODEF",
+        default_end="XTCAVF",
+        shared_params=frozenset({"n_particles"}),
+    ),
 }

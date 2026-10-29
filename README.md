@@ -90,6 +90,7 @@ Supported models:
 | `impact_f2e_inj` | Facet2 | IMPACT | CATHODEF | PR10241 | `impact` |
 | `surrogate_f2e_inj` | Facet2 | Surrogate | CATHODEF | PR10241 | `surrogate` |
 | `bmad_f2_elec` | Facet2 | Bmad | CATHODEF | END | `bmad` |
+| `surrogate_f2e_twobunch` | Facet2 | Surrogate | CATHODEF | XTCAVF | `surrogate` |
 
 Standard staged chains (build with `get_model([upstream, downstream], ...)`):
 
